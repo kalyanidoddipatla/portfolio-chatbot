@@ -1,6 +1,6 @@
-# 💬 Portfolio AI Assistant — RAG Chatbot with Gemini & Real-Time Notifications
+# 💬 Kalyani AI Assistant — RAG Chatbot with Gemini & Real-Time Notifications
 
-A conversational AI assistant for my personal portfolio site. Visitors can ask about my background, projects, and experience — answers are grounded in my actual resume/LinkedIn/GitHub data via Retrieval-Augmented Generation (RAG), and I get notified on my phone in real time whenever a visitor leaves contact details or asks something the bot can't answer.
+A personal AI assistant chatbot that answers questions about my background, projects, and experience — grounded in my actual resume/LinkedIn/GitHub data via Retrieval-Augmented Generation (RAG), with real-time phone notifications whenever a visitor leaves contact details or asks something the bot can't answer.
 
 **🔗 Live demo:** https://portfolio-chatbot-hb4j.onrender.com
 *(hosted on Render's free tier — may take ~50s to wake up if idle)*
@@ -25,7 +25,7 @@ A conversational AI assistant for my personal portfolio site. Visitors can ask a
 
 ## Overview
 
-This project started as a simple Gradio + LLM chatbot exercise and evolved into a small end-to-end AI application combining three distinct pieces of AI/backend engineering:
+This project started as a simple Gradio + LLM chatbot exercise and evolved into a small end-to-end AI application combining three distinct pieces of AI/backend engineering — designed as a standalone assistant that can later be embedded into a personal website:
 
 1. **Retrieval-Augmented Generation (RAG)** — answers are grounded in real source documents, not just prompt-stuffed text
 2. **Tool/function calling** — the model can autonomously trigger real side effects mid-conversation
