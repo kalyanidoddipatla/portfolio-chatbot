@@ -21,6 +21,7 @@ from document_loader import load_all_documents
 from chunking import chunk_documents
 from embeddings import embed_documents, embed_query
 
+
 _client = chromadb.PersistentClient(path=CHROMA_DIR)
 
 
@@ -60,6 +61,23 @@ def build_index():
 
     print(f"[vector_store] Index built: {len(texts)} chunks stored in '{COLLECTION_NAME}'.")
 
+def index_is_empty() -> bool:
+    collection = _get_collection(reset=False)
+    return collection.count() == 0
+
+
+def ensure_index_built():
+    """
+    Called at app startup. Builds the index only if it's missing/empty —
+    important for platforms like Hugging Face Spaces where local storage
+    doesn't persist across restarts, so the index needs rebuilding each
+    time the container starts fresh.
+    """
+    if index_is_empty():
+        print("[vector_store] No existing index found — building now...")
+        build_index()
+    else:
+        print("[vector_store] Existing index found — skipping rebuild.")
 
 def retrieve(query: str, top_k: int = TOP_K) -> list[str]:
     """Return the top_k most relevant chunk texts for a given query."""
