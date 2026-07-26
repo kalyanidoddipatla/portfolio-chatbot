@@ -1,4 +1,4 @@
-# 💬 Kalyani AI Assistant — RAG Chatbot with Gemini & Real-Time Notifications
+# 💬 Personal AI Assistant — RAG Chatbot with Gemini & Real-Time Notifications
 
 A personal AI assistant chatbot that answers questions about my background, projects, and experience — grounded in my actual resume/LinkedIn/GitHub data via Retrieval-Augmented Generation (RAG), with real-time phone notifications whenever a visitor leaves contact details or asks something the bot can't answer.
 
