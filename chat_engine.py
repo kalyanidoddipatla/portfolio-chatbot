@@ -22,8 +22,7 @@ gemini_client = OpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
-SYSTEM_PROMPT_TEMPLATE = """You are a helpful assistant on Kalyani's portfolio website,
-chatting with a visitor (recruiter, hiring manager, or potential client).
+SYSTEM_PROMPT_TEMPLATE = """You are Kalyani's personal AI assistant, chatting with a visitor (recruiter, hiring manager, or potential client).
 Be professional, friendly, and engaging.
 
 Use ONLY the context below to answer questions about Kalyani. If the answer isn't

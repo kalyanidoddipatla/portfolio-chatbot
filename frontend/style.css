@@ -1,0 +1,290 @@
+/* ---------------------------------------------------------------
+   Design tokens
+   Palette:  #0B0E11 (bg), #12161B (panel), #1B2129 (border),
+             #E7E9EC (text primary), #8B93A1 (text secondary),
+             #5EEAD4 (accent — teal, "signal" color), #F0B429 (warn/amber)
+   Type:     IBM Plex Mono (prompts, labels, meta) + Inter (body/reading)
+   Signature: dark, minimal developer-console aesthetic, chosen to feel
+              distinct from a generic chat-bubble UI and to fit an
+              AI/engineering portfolio context. Log-style timestamped
+              entries keep the interface easy to scan for longer answers.
+------------------------------------------------------------------ */
+
+:root {
+  --bg: #0B0E11;
+  --panel: #12161B;
+  --border: #1B2129;
+  --text: #E7E9EC;
+  --text-dim: #8B93A1;
+  --accent: #5EEAD4;
+  --accent-dim: #2C7A70;
+  --warn: #F0B429;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+.page-placeholder {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 48px;
+  max-width: 720px;
+}
+
+.placeholder-eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin: 0 0 12px;
+}
+
+.placeholder-name {
+  font-family: var(--sans);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+}
+
+.placeholder-tagline {
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 46ch;
+}
+
+@media (max-width: 480px) {
+  .page-placeholder {
+    padding: 0 24px;
+  }
+}
+
+.widget-root {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.widget-toggle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 120ms ease, border-color 120ms ease;
+}
+
+.widget-toggle:hover {
+  transform: scale(1.05);
+  border-color: var(--accent-dim);
+}
+
+.toggle-icon-close { display: none; }
+
+.widget-root.open .toggle-icon-open { display: none; }
+.widget-root.open .toggle-icon-close { display: block; }
+
+.widget-panel {
+  width: min(360px, calc(100vw - 32px));
+  height: min(520px, calc(100vh - 120px));
+  display: none;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  padding: 18px 16px 14px;
+}
+
+.widget-root.open .widget-panel {
+  display: flex;
+}
+
+@media (max-width: 480px) {
+  .widget-root {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    align-items: stretch;
+  }
+  .widget-panel {
+    width: 100%;
+  }
+  .widget-toggle {
+    align-self: flex-end;
+  }
+}
+
+.console-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.widget-title {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.console-subtitle {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+
+.log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: entry-in 220ms ease-out;
+}
+
+@keyframes entry-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.entry-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
+.entry-system .entry-meta { color: var(--warn); }
+.entry-user .entry-meta { color: var(--accent); }
+.entry-assistant .entry-meta { color: var(--text-dim); }
+
+.entry-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.entry-user .entry-text {
+  border-left: 2px solid var(--accent);
+}
+
+.entry-assistant .entry-text {
+  border-left: 2px solid var(--text-dim);
+}
+
+.entry-system .entry-text {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.entry-pending .entry-text {
+  color: var(--text-dim);
+}
+
+.input-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  flex-shrink: 0;
+}
+
+.input-caret {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 15px;
+}
+
+#chat-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+}
+
+#chat-input::placeholder {
+  color: var(--text-dim);
+}
+
+#send-btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+
+#send-btn:hover { opacity: 0.85; }
+#send-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* Blinking caret accent on focus, restrained — not a full fake terminal cursor */
+.input-line:focus-within {
+  border-color: var(--accent-dim);
+}
+
+

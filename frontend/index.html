@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalyani — AI Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- This page background represents your portfolio site content -->
+<div class="page-placeholder">
+  <p class="placeholder-eyebrow">hello, i'm</p>
+  <h1 class="placeholder-name">Kalyani Doddipatla</h1>
+  <p class="placeholder-tagline">AI/ML Engineer &mdash; building with LLMs, RAG, and applied machine learning.</p>
+</div>
+
+<div class="widget-root" id="widget-root">
+
+  <button class="widget-toggle" id="widget-toggle" aria-label="Open chat assistant">
+    <span class="toggle-icon-open">&gt;_</span>
+    <span class="toggle-icon-close">&times;</span>
+  </button>
+
+  <div class="console widget-panel" id="widget-panel">
+    <header class="console-header">
+      <h2 class="widget-title">AI Assistant</h2>
+      <p class="console-subtitle">Ask about my background, projects, or experience.</p>
+    </header>
+
+    <section class="log" id="log" aria-live="polite">
+    </section>
+
+    <form class="input-line" id="chat-form">
+      <span class="input-caret">&gt;</span>
+      <input
+        type="text"
+        id="chat-input"
+        autocomplete="off"
+        placeholder="Ask something..."
+        aria-label="Message"
+      />
+      <button type="submit" id="send-btn">send</button>
+    </form>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
